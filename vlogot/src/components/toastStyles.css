@@ -1,0 +1,15 @@
+/* toastStyles.css */
+
+/* Animation pour le toast */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.Toastify__toast--warning {
+  animation: slideDown 0.5s;
+}

@@ -1,0 +1,24 @@
+/* tippyCustom.css */
+.tippy-box[data-theme~='custom'] {
+  background-color: blue;
+  color: red;
+  font-size: 16px; /* Augmentez cette valeur pour des infobulles plus grandes */
+  padding: 10px; /* Ajustez cette valeur pour plus ou moins d'espace */
+  border-radius: 4px;
+}
+
+.tippy-box[data-theme~='custom'] .tippy-arrow {
+  color: blue;
+}
+
+/* Ajoutez ceci à la fin de EmailRegister.module.css */
+.tippy-box {
+  position: absolute !important; /* Assurez-vous que l'infobulle est positionnée correctement */
+  z-index: 9999 !important; /* Assurez-vous que l'infobulle est au-dessus des autres éléments */
+}
+
+
+
+
+
+

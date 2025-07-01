@@ -1,0 +1,60 @@
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(120deg); }
+  66% { transform: translateY(-5px) rotate(240deg); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* === animation d’apparition de la modal (fade + zoom) === */
+@keyframes modalAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes starFloat {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes floatStar {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+.animateFloat {
+  animation: float linear infinite;
+}
+
+.animateShake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.animateFadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.modalAppear {
+  animation: modalAppear 0.4s ease forwards;
+}
+
+.floatStar {
+  animation: floatStar 3s ease-in-out infinite;
+}

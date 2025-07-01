@@ -1,0 +1,805 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.Toastify__toast--warning {
+  animation: slideDown 0.5s;
+}
+
+/* Animation d'entrée : glisse depuis le haut */
+@keyframes customSlideDownIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animation de sortie : glisse vers le haut */
+@keyframes customSlideDownOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+/* Applique les animations aux toasts */
+.toastify__slide-enter--customSlideDownIn {
+  animation-name: customSlideDownIn;
+}
+
+.toastify__slide-exit--customSlideDownOut {
+  animation-name: customSlideDownOut;
+}
+
+/* Animation d'entrée : rebond du haut vers le bas */
+@keyframes bounceInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-2000px);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(30px);
+  }
+  80% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Animation de sortie : rebond du bas vers le haut */
+@keyframes bounceOutUp {
+  20% {
+    transform: translateY(-10px);
+  }
+  40%, 45% {
+    opacity: 1;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-2000px);
+  }
+}
+
+/* Appliquer les animations aux toasts */
+.toastify__bounce-enter--bounceInDown {
+  animation-name: bounceInDown;
+}
+
+.toastify__bounce-exit--bounceOutUp {
+  animation-name: bounceOutUp;
+}
+
+.icon-container {
+  position: relative;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.icon-hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+.icon-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+.icon-transition {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.icon-transition {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.blurred {
+  filter: blur(2px);
+  pointer-events: none;
+  opacity: 0.6;
+}
+[contenteditable]:empty:before {
+  content: attr(data-placeholder);
+  color: grey;
+  pointer-events: none;
+}
+img {
+  max-width: 100%;
+  cursor: move; /* Change le curseur lorsqu'on survole l'image */
+  resize: both; /* Ajoute des poignées pour redimensionner */
+  overflow: auto;
+  position: absolute; /* Pour un positionnement libre */
+}
+div[contenteditable="true"] {
+  position: relative; /* Nécessaire pour positionner les images */
+  overflow: auto; /* Empêche les débordements */
+}
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-container img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.resize-handle {
+  width: 10px;
+  height: 10px;
+  background: #0077ff;
+  position: absolute;
+  cursor: pointer;
+}
+
+.resize-handle.top-left {
+  top: -5px;
+  left: -5px;
+  cursor: nwse-resize;
+}
+
+.resize-handle.top-right {
+  top: -5px;
+  right: -5px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.bottom-left {
+  bottom: -5px;
+  left: -5px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.bottom-right {
+  bottom: -5px;
+  right: -5px;
+  cursor: nwse-resize;
+}
+img.resizable {
+  resize: both;
+  overflow: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+img.resizable {
+  position: relative;
+}
+
+img.resizable::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 15px;
+  height: 15px;
+  background: url('data:image/svg+xml;base64,...') no-repeat center center;
+  cursor: se-resize;
+}
+
+/* Styles pour le conteneur d'image */
+.editor img {
+  max-width: 100%;
+  height: auto;
+}
+
+.editor .resizable-image {
+  position: relative;
+  display: inline-block;
+}
+
+/* Styles pour la poignée de redimensionnement */
+.editor .resizer {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border: 1px solid #000;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  cursor: se-resize;
+}
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.image-container.selected .resizer {
+  display: block;
+}
+
+.resizer {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border: 1px solid #000;
+  position: absolute;
+  cursor: pointer;
+  display: none;
+}
+
+.resizer-nw {
+  top: -5px;
+  left: -5px;
+  cursor: nw-resize;
+}
+
+.resizer-ne {
+  top: -5px;
+  right: -5px;
+  cursor: ne-resize;
+}
+
+.resizer-sw {
+  bottom: -5px;
+  left: -5px;
+  cursor: sw-resize;
+}
+
+.resizer-se {
+  bottom: -5px;
+  right: -5px;
+  cursor: se-resize;
+}
+
+.resizer-n {
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: n-resize;
+}
+
+.resizer-e {
+  top: 50%;
+  right: -5px;
+  transform: translateY(-50%);
+  cursor: e-resize;
+}
+
+.resizer-s {
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: s-resize;
+}
+
+.resizer-w {
+  top: 50%;
+  left: -5px;
+  transform: translateY(-50%);
+  cursor: w-resize;
+}
+.resizable-container {
+  position: relative;
+  display: inline-block;
+  border: 2px dashed #0078d4;
+  padding: 5px;
+  box-sizing: border-box;
+  transition: width 0.2s ease, height 0.2s ease, top 0.2s ease, left 0.2s ease;
+}
+
+.resize-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  transition: width 0.2s ease, height 0.2s ease;
+}
+
+.resize-image {
+  pointer-events: auto;
+  user-select: none;
+  cursor: pointer;
+}
+
+
+.resizer {
+  width: 12px;
+  height: 12px;
+  background: #0078d4;
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.resizer.top-left {
+  top: -6px;
+  left: -6px;
+  cursor: nwse-resize;
+}
+
+.resizer.top-right {
+  top: -6px;
+  right: -6px;
+  cursor: nesw-resize;
+}
+
+.resizer.bottom-left {
+  bottom: -6px;
+  left: -6px;
+  cursor: nesw-resize;
+}
+
+.resizer.bottom-right {
+  bottom: -6px;
+  right: -6px;
+  cursor: nwse-resize;
+}
+
+.resizer.middle-top {
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: ns-resize;
+}
+
+.resizer.middle-bottom {
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: ns-resize;
+}
+
+.resizer.middle-left {
+  top: 50%;
+  left: -6px;
+  transform: translateY(-50%);
+  cursor: ew-resize;
+}
+
+.resizer.middle-right {
+  top: 50%;
+  right: -6px;
+  transform: translateY(-50%);
+  cursor: ew-resize;
+}
+.resize-handle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #0078d4;
+}
+.top-left {
+  top: -6px;
+  left: -6px;
+  cursor: nwse-resize;
+}
+.top-right {
+  top: -6px;
+  right: -6px;
+  cursor: nesw-resize;
+}
+.bottom-left {
+  bottom: -6px;
+  left: -6px;
+  cursor: nesw-resize;
+}
+.bottom-right {
+  bottom: -6px;
+  right: -6px;
+  cursor: nwse-resize;
+}
+.image-container {
+  position: relative;
+  display: inline-block;
+  border: 2px dashed transparent;
+  padding: 5px;
+}
+
+.resizer {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #0078d4;
+  border-radius: 50%;
+  display: none;
+}
+
+.resizer:hover {
+  background-color: #005bbb;
+}
+
+.resizer.top-left {
+  top: -6px;
+  left: -6px;
+  cursor: nwse-resize;
+}
+
+.resizer.top-right {
+  top: -6px;
+  right: -6px;
+  cursor: nesw-resize;
+}
+
+.resizer.bottom-left {
+  bottom: -6px;
+  left: -6px;
+  cursor: nesw-resize;
+}
+
+.resizer.bottom-right {
+  bottom: -6px;
+  right: -6px;
+  cursor: nwse-resize;
+}
+.image-container {
+  position: relative;
+  display: inline-block;
+  border: 1px dashed transparent;
+}
+
+.resizer {
+  width: 10px;
+  height: 10px;
+  background: #0078d4;
+  position: absolute;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none; /* Masqué par défaut */
+}
+
+.resizer:hover {
+  background: #005bbb;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  border: 1px dashed transparent;
+  cursor: move;
+}
+
+.resizer {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #000;
+  cursor: pointer;
+  display: none; /* Masqué par défaut */
+}
+
+.resizer:hover {
+  background: #333;
+}
+
+img.resizable {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.resizable-image-container {
+  position: relative;
+  display: inline-block;
+  border: 1px dashed #aaa; /* Pour voir les limites du conteneur */
+  margin: 10px;
+}
+
+.resizable-image {
+  width: 100%;
+  height: auto; /* Garde l'image proportionnelle */
+  display: block;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: red; /* Couleur pour être bien visible */
+  z-index: 10; /* S'assurer que les poignées sont au-dessus de l'image */
+}
+
+.resize-handle.top-left {
+  top: -7px;
+  left: -7px;
+  cursor: nwse-resize;
+}
+
+.resize-handle.top-right {
+  top: -7px;
+  right: -7px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.bottom-left {
+  bottom: -7px;
+  left: -7px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.bottom-right {
+  bottom: -7px;
+  right: -7px;
+  cursor: nwse-resize;
+}
+.resizable-image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.resizable-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #0077ff;
+  border: 2px solid white;
+  border-radius: 50%;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.resize-handle.top-left {
+  top: -5px;
+  left: -5px;
+  cursor: nwse-resize;
+}
+
+.resize-handle.top-right {
+  top: -5px;
+  right: -5px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.bottom-left {
+  bottom: -5px;
+  left: -5px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.bottom-right {
+  bottom: -5px;
+  right: -5px;
+  cursor: nwse-resize;
+}
+.resizable-image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.resizable-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #0077ff;
+  border: 2px solid white;
+  border-radius: 50%;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.resize-handle.top-left {
+  top: -5px;
+  left: -5px;
+  cursor: nwse-resize;
+}
+
+.resize-handle.top-right {
+  top: -5px;
+  right: -5px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.bottom-left {
+  bottom: -5px;
+  left: -5px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.bottom-right {
+  bottom: -5px;
+  right: -5px;
+  cursor: nwse-resize;
+}
+
+.resizable-image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.resizable-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #0077ff;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.resize-handle.top-left {
+  top: -5px;
+  left: -5px;
+  cursor: nwse-resize;
+}
+
+.resize-handle.top-right {
+  top: -5px;
+  right: -5px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.bottom-left {
+  bottom: -5px;
+  left: -5px;
+  cursor: nesw-resize;
+}
+
+.resize-handle.bottom-right {
+  bottom: -5px;
+  right: -5px;
+  cursor: nwse-resize;
+}
+.toast-rebound {
+  animation: toastBounce 0.5s ease forwards;
+}
+
+@keyframes toastBounce {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+pre.black-background {
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+  max-width: 100%;
+  white-space: pre-wrap;   /* Permet de renvoyer à la ligne au besoin */
+  word-break: break-word;  /* Permet de couper un mot trop long */
+  box-sizing: border-box;
+}
+
+pre.white-background {
+  background-color: #fff;
+  color: #000;
+  padding: 10px;
+  border-radius: 4px;
+  overflow-x: auto;
+  max-width: 100%;
+  white-space: pre-wrap;   /* Idem pour la version fond blanc */
+  word-break: break-word;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+/* Mise à l'échelle générale pour le conteneur principal */
+.ConfigCard {
+  width: 90vw;
+  max-width: 1200px;
+  height: auto;
+  max-height: 90vh;
+  overflow-y: auto;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Disposition adaptable pour les PreviewCards */
+.ConfigCard > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Ajustements adaptatifs pour PreviewCard */
+.PreviewCard {
+  width: 250px;
+  height: 350px;
+  max-width: 100%;
+  margin: 10px;
+  box-sizing: border-box;
+}
+
+/* Réduction automatique du texte */
+.PreviewVlogText {
+  font-size: clamp(1rem, 2.5vw, 1.8rem);
+  text-align: center;
+}
+
+/* Gestion des icônes MultiVlog */
+.MultiVlogIconBackground {
+  font-size: clamp(1rem, 2.5vw, 2rem);
+  position: absolute;
+}
+
+/* Mise à l'échelle des images de profil */
+.ProfileImageCircle img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+/* Boutons de souscription et bulles */
+.SubscribeButton, .LikeBubble, .CommentBubble {
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem);
+  padding: 0.5rem 1rem;
+}
+
+/* Ajustement du titre principal */
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}

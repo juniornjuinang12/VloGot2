@@ -1,0 +1,15 @@
+ 
+# Node.js
+node_modules/
+package-lock.json
+
+# Build
+build/
+dist/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

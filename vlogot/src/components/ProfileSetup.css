@@ -1,0 +1,261 @@
+/* === KEYFRAMES =================================================== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* === CONTENEURS PRINCIPAUX ======================================= */
+.Background {
+  background: linear-gradient(135deg, #1e90ff, #00bfff);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.ContentWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* === CARTE CENTRALE + TITRES ===================================== */
+.Card {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+}
+
+.Title    { font-size: 2rem; color: #333; margin-bottom: 1rem; }
+.Subtitle { font-size: 1rem; color: #666; margin-bottom: 2rem; }
+
+/* === BOUTON « ANNULER » (filtre) ================================= */
+.CancelButton {
+  position: absolute;
+  top: -10px;
+  right: -100px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #fff;
+  background: #ff6347;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .3s ease;
+  display: none;              /* par défaut masqué */
+}
+.CancelButton.is-visible {     /* ➜ ajoute/retire cette classe en JS */
+  display: block;
+}
+.CancelButton:hover { background: #e5533c; }
+
+/* === DROPZONE & APERÇU =========================================== */
+.DropzoneContainer {
+  border: 2px dashed #007bff;
+  border-radius: 50%;
+  width: 150px; height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px;
+  cursor: pointer;
+  background: #f8f8f8;
+  position: relative;
+}
+
+.PreviewImage        { border-radius: 50%; width: 150px; height: 150px; object-fit: cover; }
+.ModalPreviewImage   { border-radius: 50%; width: 80px;  height: 80px;  object-fit: cover; margin-top: 10px; }
+
+.IconContainer {
+  position: absolute;
+  bottom: 10px; right: 10px;
+  background: #007bff;
+  border-radius: 50%;
+  padding: 5px;
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+
+/* === FORMULAIRE (input + bouton) ================================= */
+.Input {
+  padding: .5rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+  transition: all .3s ease;
+}
+.Input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,.5);
+}
+
+.Button {
+  padding: .5rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all .3s ease;
+  margin-top: 10px;
+}
+.Button:hover { background: #0056b3; }
+
+/* === MODAL (contenu animé) ======================================= */
+.AnimatedModalContent {
+  background: #fff;
+  padding: 20px;
+  border-radius: 50px;
+  text-align: center;
+  animation: fadeInUp .3s ease-out;
+  box-shadow: 0 4px 8px rgba(0,0,0,.2);
+  max-width: 350px;
+  margin: auto;
+}
+
+.ModalButton {
+  margin: 5px; padding: 5px;
+  font-size: .8rem; color: #fff;
+  background: #007bff;
+  border: none; border-radius: 5px;
+  cursor: pointer;
+  display: flex; flex-direction: column; align-items: center;
+}
+.ModalButton:hover { background: #0056b3; }
+
+.ButtonIcon { font-size: 1rem; margin-bottom: 3px; }
+
+/* === EDIT CARD (recadrage / filtres) ============================= */
+.EditCard {
+  background: rgba(255,255,255,.9);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1);
+  text-align: center;
+  max-width: 300px; width: 100%;
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.ButtonContainer { display: flex; justify-content: space-between; margin-top: 20px; }
+.ChangeButton    { display: flex; align-items: center; }   /* hérite de .Button si tu ajoutes les mêmes classes */
+
+.PencilIcon { margin-right: 5px; }
+
+.CameraContainer { display: flex; flex-direction: column; align-items: center; margin-top: 20px; }
+
+.CloseButton {
+  position: absolute; top: 10px; right: 10px;
+  background: transparent; border: none;
+  color: #007bff; font-size: 1.5rem; cursor: pointer;
+}
+.CloseButton:hover { color: #0056b3; }
+
+/* === CARTE D’OPTIONS ============================================ */
+.OptionsCard {
+  position: absolute; top: 250px; right: 0;
+  background: rgba(255,255,255,.8);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1);
+  display: flex; flex-direction: column; align-items: center;
+  animation: fadeInUp .3s ease-out;
+  z-index: 10; width: 150px;
+}
+
+.OptionButton {
+  background: none; border: none;
+  color: #007bff; font-size: 1rem;
+  margin: 10px 0; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center;
+}
+.OptionButton:hover { color: #0056b3; }
+.OptionIcon { font-size: 1.5rem; margin-bottom: 5px; }
+
+/* === OVERLAY & SPINNER ========================================== */
+.LoadingOverlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.5);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 1000;
+}
+.LoadingSpinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 60px; height: 60px;
+  animation: spin 2s linear infinite;
+}
+
+/* === FILTRES, SLIDER & STYLES =================================== */
+.FilterControls { display: flex; justify-content: space-around; margin: 10px 0; }
+.FilterSlider   { width: 60px; }
+
+.SliderWrapper {
+  height: 400px; width: 120px;
+  overflow: hidden; position: relative;
+  box-shadow: 0 4px 8px rgba(0,0,0,.1);
+  border-radius: 10px; background: #fff;
+  animation: fadeInScale .5s ease-in-out;
+}
+.SliderWrapper.is-hidden { display: none; }  /* utilitaire */
+
+.ArrowButton {
+  position: absolute; left: 70%;
+  transform: translateX(-50%);
+  background: #fff;
+  border-radius: 50%;
+  width: 40px; height: 40px;
+  display: flex; justify-content: center; align-items: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,.1);
+  cursor: pointer;
+}
+.ArrowButton.is-hidden { display: none; }
+
+.StyleCard {
+  width: 120px; height: 120px;
+  border-radius: 10px; overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,.1);
+  transition: transform .2s, box-shadow .2s;
+  cursor: pointer; position: relative;
+}
+.StyleCard:hover   { transform: scale(1.05); }
+.StyleCard:active  { transform: scale(.95); box-shadow: 0 2px 4px rgba(0,0,0,.2); }
+
+.StyleImage       { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+.StyleNameOverlay {
+  position: absolute; inset-block-end: 0; inset-inline: 0;
+  background: rgba(0,0,0,.5); color: #fff;
+  text-align: center; padding: 5px; font-size: .9rem;
+}
+
+/* === BLUR OVERLAY (modale) ====================================== */
+.BlurOverlay {
+  position: fixed; inset: 0;
+  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,.3);
+  z-index: 998;
+  display: none;
+}
+.BlurOverlay.is-visible { display: block; }

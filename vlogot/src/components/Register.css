@@ -1,0 +1,339 @@
+/* =========================================================================
+   REGISTER – register.css
+   ====================================================================== */
+
+/* === RESET ============================================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === CONTAINER ======================================================== */
+.register-container {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: linear-gradient(to bottom, #87CEEB, #4682B4);
+}
+
+/* ----------------------------------------------------------------------
+   Elements are hidden by default and revealed once `.loaded` est ajouté
+------------------------------------------------------------------------ */
+.logo-header,
+.main-card,
+.divider,
+.email-btn,
+.disclaimer {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.register-container.loaded .logo-header  { opacity: 1; transform: none; }
+.register-container.loaded .main-card   { opacity: 1; transform: none; transition-delay: 0.3s; }
+.register-container.loaded .divider     { opacity: 1; transform: none; transition-delay: 1.2s; }
+.register-container.loaded .email-btn   { opacity: 1; transform: none; transition-delay: 1.3s; }
+.register-container.loaded .disclaimer  { opacity: 1; transform: none; transition-delay: 1.5s; }
+
+/* === LOGO ============================================================= */
+.logo-header {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  z-index: 10;
+}
+
+.logo-text {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(45deg, #fff, #a8edea, #fed6e3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+  animation: logoGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+  from { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)); }
+  to   { filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6)); }
+}
+
+/* === CARD ============================================================== */
+.main-card {
+  width: 90%;
+  max-width: 420px;
+  padding: 3rem 2.5rem;
+  position: relative;
+  z-index: 5;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* === TITLE ============================================================ */
+.title {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  animation: titleFade 0.8s ease-out 0.5s both;
+}
+
+@keyframes titleFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.title-logo {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+/* === SOCIAL BUTTONS =================================================== */
+.social-buttons {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: buttonSlide 0.6s ease-out forwards;
+}
+
+.social-btn:nth-child(1) { animation-delay: 0.7s; }
+.social-btn:nth-child(2) { animation-delay: 0.8s; }
+.social-btn:nth-child(3) { animation-delay: 0.9s; }
+.social-btn:nth-child(4) { animation-delay: 1.0s; }
+
+@keyframes buttonSlide {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.social-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.social-btn:hover::before { transform: translateX(100%); }
+.social-btn:hover          { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); }
+.social-btn:active         { transform: translateY(4px) scale(0.98); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); transition: all 0.1s ease; }
+
+.social-btn:active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0%, transparent 50%);
+  border-radius: 16px;
+  animation: pressEffect 0.2s ease-out;
+  pointer-events: none;
+}
+
+@keyframes pressEffect {
+  0%   { transform: scale(0);   opacity: 0; }
+  50%  { transform: scale(1);   opacity: .8; }
+  100% { transform: scale(1.2); opacity: 0; }
+}
+
+/* Variants */
+.google-btn   { background: linear-gradient(135deg, #fff, #f8f9fa); color: #333;  border: 1px solid rgba(0,0,0,0.1); }
+.facebook-btn { background: linear-gradient(135deg, #1877f2, #42a5f5); color: #fff; }
+.twitter-btn  { background: linear-gradient(135deg, #1da1f2, #64b5f6); color: #fff; }
+.apple-btn    { background: linear-gradient(135deg, #000, #333);       color: #fff; }
+
+/* === DIVIDER ========================================================== */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+}
+
+.divider span {
+  padding: 0 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+@keyframes dividerFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* === EMAIL BUTTON ===================================================== */
+.email-btn {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+
+  animation: emailBtnFade 0.6s ease-out 1.3s both;
+}
+
+@keyframes emailBtnFade {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.email-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), transparent);
+  transform: translateY(100%);
+  transition: transform 0.3s;
+}
+
+.email-btn:hover::before { transform: translateY(0); }
+.email-btn:hover         { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4); }
+.email-btn:active        { transform: translateY(2px) scale(0.98); box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4); transition: all .1s ease; }
+
+.email-btn:active::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.1) 0%, transparent 50%);
+  border-radius: 16px;
+  animation: pressEffect 0.2s ease-out;
+  pointer-events: none;
+}
+
+/* === DISCLAIMER ======================================================= */
+.disclaimer {
+  margin-top: 2rem;
+  max-width: 420px;
+  text-align: center;
+  line-height: 1.5;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@keyframes disclaimerFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.disclaimer a {
+  color: #a8edea;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.disclaimer a:hover { color: #fed6e3; text-decoration: underline; }
+
+/* === FLOATING “V” LETTERS ============================================= */
+.floating-v {
+  position: absolute;
+  pointer-events: none;
+  color: rgba(30, 144, 255, 0.6);
+  font-size: var(--size);
+  font-weight: bold;
+  animation: float var(--duration) var(--delay) infinite ease-in-out;
+}
+
+@keyframes float {
+  0%   { transform: translateY(0) translateX(0);  }
+  50%  { transform: translateY(-20px) translateX(10px); }
+  100% { transform: translateY(0) translateX(0);  }
+}
+
+/* === BUBBLES ========================================================== */
+.bubble {
+  position: absolute;
+  bottom: 0;
+  left: var(--x);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  animation: bubbleFloat var(--duration) var(--delay) infinite;
+}
+
+@keyframes bubbleFloat {
+  0%   { bottom: -10%; opacity: 0; transform: translateX(0); }
+  50%  {                      opacity: 0.5;                }
+  100% { bottom: 100%; opacity: 0; transform: translateX(30px); }
+}
+
+/* === RESPONSIVE ======================================================= */
+@media (max-width: 480px) {
+  .main-card { margin: 1rem; padding: 2rem 1.5rem; }
+  .logo-header { top: 1rem; left: 1rem; }
+  .logo-text   { font-size: 2rem; }
+  .title       { font-size: 1.5rem; }
+}

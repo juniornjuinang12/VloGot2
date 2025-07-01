@@ -1,0 +1,14 @@
+.hidden-select-container {
+  overflow: hidden;
+  transition: height 0.3s ease, opacity 0.3s ease;
+}
+
+.hidden-select-container.open {
+  height: auto; /* La hauteur s'ajustera automatiquement au contenu */
+  opacity: 1;
+}
+
+.hidden-select-container.closed {
+  height: 0;
+  opacity: 0;
+}
