@@ -1,15 +1,1 @@
-# Ignorer les node_modules partout
-**/node_modules/
-
-# Ignorer les fichiers de build dans le frontend
-vlogot/build/
-
-# Ignorer les fichiers de logs du backend
-backend/logs/
-backend/*.log
-
-# Ignorer les fichiers temporaires
-*.log
-.DS_Store
-
 
