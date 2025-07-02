@@ -12,6 +12,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import getCroppedImg from './getCroppedImg';
+import vlogLogo from '../assets/logo.png';
 
 const Background = styled.div`
   background: linear-gradient(135deg, #1e90ff, #00bfff);
@@ -20,6 +21,31 @@ const Background = styled.div`
   position: relative;
   overflow: hidden;
   gap:50px;
+`;
+
+const LogoHeader = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 3;
+`;
+
+const LogoText = styled.div`
+  font-size: 28px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+`;
+
+const LogoImg = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(30, 144, 255, 0.1);
+  object-fit: contain;
 `;
 
 
@@ -44,6 +70,10 @@ const Card = styled.div`
   max-width: 400px;
   width: 100%;
   z-index: 2;
+`;
+
+const AnimatedCard = styled(Card)`
+  animation: ${fadeIn} 0.6s ease-out;
 `;
 
 
@@ -818,9 +848,11 @@ const FilterGridContainer = styled.div`
   height: 410px;
   width: 350px;
   overflow-y: auto;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  animation: ${fadeIn} 0.5s ease-out;
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -868,7 +900,11 @@ const FilterGridContainer = styled.div`
       )}
       <BlurOverlay isVisible={editModalIsOpen} />
       <ToastContainer />
-      <Card>
+      <LogoHeader>
+        <LogoText>VloGot</LogoText>
+        <LogoImg src={vlogLogo} alt="VloGot logo" />
+      </LogoHeader>
+      <AnimatedCard>
         <Title>Configurer votre profil</Title>
         <Subtitle>Ajoutez une photo de profil et un pseudo</Subtitle>
         {isCancelButtonVisible && (
@@ -920,8 +956,8 @@ const FilterGridContainer = styled.div`
             </Button>
           </OptionsCard>
         )}
-      </Card>
-<Modal
+      </AnimatedCard>
+      <Modal
   isOpen={modalIsOpen}
   onRequestClose={closeModal}
   style={{
